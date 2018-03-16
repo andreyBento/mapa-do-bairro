@@ -1,0 +1,32 @@
+body{
+  font-size: 16px;
+}
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+.firstEnter{
+  display: block;
+  min-height: 100%;
+}
+.firstEnter:before{
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  min-height: 100vh;
+}
+.center{
+  width: calc(100% - 5px);
+  display: inline-block;
+  vertical-align: middle;
+}
+.firstEnter .logo{
+  margin-top: 0;
+  margin-bottom: 70px;
+  color: #3A6CB5;
+}
+.firstEnter .btn{ margin-bottom: 5px; }
+.btn{ border: none; }
+.btn-lg{ padding: 8px 20px; }
+.btn-primary{ background-color: #3A6CB5; }
