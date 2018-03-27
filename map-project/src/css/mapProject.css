@@ -83,14 +83,24 @@ body{
   position: absolute;
   top: 50px;
   left: 50%;
+  width: 260px;
   z-index: 5;
   transform: translateX(-50%);
+}
+
+.form-busca .form-control{
+  height: 40px;
+  background-color: #EEEEEE;
+  font-size: 18px;
+  color: #757575;
+  border-radius: 10px;
 }
 
 .result-list{
   margin-top: 10px;
   margin-bottom: 0;
   padding-left: 0;
+  font-size: 14px;
   list-style: none;
 }
 
