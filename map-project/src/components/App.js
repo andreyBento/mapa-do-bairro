@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/mapProject.css';
-import FirstEnter from '../components/FirstEnter';
+// import FirstEnter from '../components/FirstEnter';
+import Map from '../components/Map';
 import HomeComponent from '../components/HomeComponent';
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
 
   checkLocation(){
     if(this.state.location === null){
-      return <FirstEnter />
+      // return <FirstEnter />
+      return <Map />
     } else{
       return <HomeComponent />
     }

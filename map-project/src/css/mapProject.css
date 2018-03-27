@@ -26,7 +26,91 @@ body{
   margin-bottom: 70px;
   color: #3A6CB5;
 }
-.firstEnter .btn{ margin-bottom: 5px; }
+.firstEnter .btn{ margin-bottom: 5px; text-align: left; }
 .btn{ border: none; }
 .btn-lg{ padding: 8px 20px; }
 .btn-primary{ background-color: #3A6CB5; }
+
+.map-container{
+  height: 100vh;
+  width: 100vw;
+}
+
+.map{
+  height: 100%;
+  width: 100%;
+}
+
+.marker-container .ellipse{
+  position: relative;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  background-color: #666;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.marker-container.active .ellipse{ background-color: #3A6CB5; }
+
+.marker-container.active:before,
+.marker-container.active:after{
+  content: '';
+  position: absolute;
+  display: block;
+  z-index: 1;
+  background-color: #3A6CB5;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.marker-container.active:before{
+  top: -10px;
+  left: -10px;
+  width: 34px;
+  height: 34px;
+}
+
+.marker-container.active:after{
+  top: -16px;
+  left: -16px;
+  width: 46px;
+  height: 46px;
+}
+
+
+.form-busca{
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%);
+}
+
+.result-list{
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.result-list li{
+  margin-top: 2px;
+  padding: 5px 15px;
+  background-color: #F2F2F2;
+  text-align: left;
+  color: #333333;
+  border-radius: 10px;
+}
+
+.result-list li:first-of-type{ margin-top: 0; }
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.4);
+}
