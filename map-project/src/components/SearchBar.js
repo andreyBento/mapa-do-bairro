@@ -7,7 +7,8 @@ class SearchBar extends Component {
         super(props);
         this.state = {
             value: '',
-            result: null
+            result: null,
+            teste: null
         };
         this.locationsTypes = [
             'Mercados e armazéns',
@@ -60,6 +61,7 @@ class SearchBar extends Component {
             'Informática e jogos'
         ];
         this.isFocused = false;
+        this.searchKey = 'STVDWS5B2TNGTH41TABSLOF1ZMAPD2VWWTS40OKKRZZ1BZOZ';
         this.handleFocusIn = this.handleFocusIn.bind(this);
         this.handleFocusOut = this.handleFocusOut.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -97,6 +99,40 @@ class SearchBar extends Component {
         this.props.handleFocus(this.isFocused);
         this.setState({value: event.target.innerHTML});
         this.setState({result: null});
+
+        // var teste = fetch(`https://api.foursquare.com/v2/venues/search?||=40.7446790,-73.9485420&query=restaurante&oath_token=STVDWS5B2TNGTH41TABSLOF1ZMAPD2VWWTS40OKKRZZ1BZOZ`).then(res => res.json()).catch(error => {throw new Error('error')});
+
+        const request = require('request');
+
+        var that = this;
+
+        request({
+            url: 'https://api.foursquare.com/v2/venues/explore',
+            method: 'GET',
+            qs: {
+                client_id: 'STVDWS5B2TNGTH41TABSLOF1ZMAPD2VWWTS40OKKRZZ1BZOZ',
+                client_secret: 'DAWJIRXIBQ3Z5MTKLZI0BQKLPNQQYRHGCCMVW1S0552KFKAN',
+                ll: '40.7243,-74.0018',
+                query: 'restaurant',
+                v: '20180323',
+                limit: 10,
+                venuePhotos: 1
+            }
+        }, function(err, res, body) {
+            if (err) {
+                throw new Error('O seguinte erro ocorreu: ' + err);
+            } else {
+                // console.log(body);
+                var teste2 = JSON.parse(body)
+                that.setState({ teste: teste2 });
+                console.log(that.state.teste.response.groups)
+            }
+        });
+
+
+
+
+        // console.log(request || JSON);
     }
 
     handleSubmit(){}
