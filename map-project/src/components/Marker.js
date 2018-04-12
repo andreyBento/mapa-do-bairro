@@ -8,14 +8,32 @@ export default class Marker extends Component {
     }
 
     handleClick(){
-        console.log('me clicou pq?');
+        this.props.handleCenter(this.props.lat, this.props.lng)
+        if(this.props.cardOpen !== undefined){
+            this.props.cardOpen(true);
+        }
     }
 
     render() {
-        return (
-            <div className="marker-container active" onClick={this.handleClick}>
-                <div className="ellipse"></div>
-            </div>
-        )
+        if( this.props.active ){
+            return (
+                <div className="marker-container active" onClick={this.handleClick}>
+                    <div className="ellipse"></div>
+                </div>
+            )
+        } else if( this.props.user ) {
+            return (
+                <div className="marker-container user" onClick={this.handleClick}>
+                    <div className="ellipse"></div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="marker-container" onClick={this.handleClick}>
+                    <div className="ellipse"></div>
+                </div>
+            )
+        }
+        
     }
 }
