@@ -18,6 +18,7 @@ Tecnologias usadas no projeto :
 
 Funções de acesso :
 ```
+npm install *(instala todas as dependências do projeto)*
 npm start *(starta o servidor remoto)*
 ```
 

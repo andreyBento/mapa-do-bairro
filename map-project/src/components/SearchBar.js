@@ -69,8 +69,8 @@ class SearchBar extends Component {
             url: 'https://api.foursquare.com/v2/venues/explore',
             method: 'GET',
             qs: {
-                client_id: 'STVDWS5B2TNGTH41TABSLOF1ZMAPD2VWWTS40OKKRZZ1BZOZ',
-                client_secret: 'DAWJIRXIBQ3Z5MTKLZI0BQKLPNQQYRHGCCMVW1S0552KFKAN',
+                client_id: 'I4YY4031ZG3MEIQOH2Z5XX1RFSX5VQLBEOJVFBSSY4D22LBO',
+                client_secret: '55QNVWE1YTIOGAW3WHFSWHBJ4JG2TCQEGQDA31I5XNDYS3CR',
                 ll: this.location.lat + ',' + this.location.lng,
                 query: event.target.innerHTML,
                 v: '20180323',
@@ -79,6 +79,8 @@ class SearchBar extends Component {
             }
         }, function(err, res, body) {
             if (err) {
+                alert('Ocorreu um erro com a API do FourSquare, por favor carregue novamente a página');
+                console.log('Por favor carregue novamente a página');
                 throw new Error('O seguinte erro ocorreu: ' + err);
             } else {
 
@@ -105,7 +107,7 @@ class SearchBar extends Component {
         if( this.state.result != null && this.state.result !== '' ){
             return (
                 <form className="form-busca">
-                    <input type="text" className="form-control" placeholder="Estabelecimentos..." value={this.state.value} onChange={(event) => this.handleChange(event.target.value)} />
+                    <input type="text" className="form-control" placeholder="Mudar Busca..." value={this.state.value} onChange={(event) => this.handleChange(event.target.value)} />
                     <ul className="result-list">
                         {this.state.result.map( (item, index) => {
                             if(index > 5){
@@ -120,7 +122,7 @@ class SearchBar extends Component {
         } else{
             return (
                 <form className="form-busca" onSubmit={this.handleSubmit}>
-                    <input type="text" className="form-control" placeholder="Estabelecimentos..." value={this.state.value} onChange={(event) => this.handleChange(event.target.value)} onFocus={this.handleFocusIn} onBlur={this.handleFocusOut} />
+                    <input type="text" className="form-control" placeholder="Mudar Busca..." value={this.state.value} onChange={(event) => this.handleChange(event.target.value)} onFocus={this.handleFocusIn} onBlur={this.handleFocusOut} />
                 </form>
             );
         }

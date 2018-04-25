@@ -28,6 +28,7 @@ export default class Map extends Component {
         this.handleLocationsInfos = this.handleLocationsInfos.bind(this);
         this.toggleMenu = this.toggleMenu.bind(this);
         this.changeCard = this.changeCard.bind(this);
+        this.firstSearch = this.firstSearch.bind(this);
         this.savePosition = this.savePosition.bind(this);
     }
 
@@ -108,6 +109,47 @@ export default class Map extends Component {
         }
     }
 
+    firstSearch(){
+        const request = require('request');
+        var that = this;
+
+        request({
+            url: 'https://api.foursquare.com/v2/venues/explore',
+            method: 'GET',
+            qs: {
+                client_id: 'I4YY4031ZG3MEIQOH2Z5XX1RFSX5VQLBEOJVFBSSY4D22LBO',
+                client_secret: '55QNVWE1YTIOGAW3WHFSWHBJ4JG2TCQEGQDA31I5XNDYS3CR',
+                ll: this.state.userLocation.lat + ',' + this.state.userLocation.lng,
+                query: 'restaurantes',
+                v: '20180323',
+                limit: 10,
+                venuePhotos: 1
+            }
+        }, function(err, res, body) {
+            if (err) {
+                alert('Ocorreu um erro com a API do FourSquare, por favor carregue novamente a página');
+                console.log('Por favor carregue novamente a página');
+                throw new Error('O seguinte erro ocorreu: ' + err);
+            } else {
+
+                var infoJson = JSON.parse(body);
+                that.setState({ places: infoJson.response.groups[0].items });
+
+                that.handleCenter(that.state.places[0].venue.location.lat, that.state.places[0].venue.location.lng);
+
+                var arrayMarker = that.state.places.map(res => {
+                    var result = { lat: res.venue.location.lat, lng: res.venue.location.lng }
+                    return result;
+                });
+
+                that.handleMarkers(arrayMarker);
+
+                that.handleLocationsInfos(that.state.places);
+                
+            }
+        });
+    }
+
     // Função que renderiza o botão que abre o menu
     handleButton(){
 
@@ -133,15 +175,11 @@ export default class Map extends Component {
     }
 
     render() {
-        // Pede ao browser a localização do usuário
-        navigator.geolocation.getCurrentPosition(showPosition);
-        let that = this;
-        function showPosition(position) {
-            window.localStorage.setItem('lat', position.coords.latitude)
-            window.localStorage.setItem('lng', position.coords.longitude)
-        }
-        that.savePosition;
         
+        if(this.state.arrayMarkers === null){
+            this.firstSearch();
+        }
+
         return (
             <div className='map-container'>
                 <SearchBar handleFocus={this.changeState} handleCenter={(lat, lng) => this.handleCenter(lat, lng)} handleMarkers={(result) => this.handleMarkers(result)} location={this.state.userLocation} handleLocationsInfos={(res) => this.handleLocationsInfos(res)} />

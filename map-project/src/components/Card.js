@@ -25,7 +25,6 @@ export default class Card extends Component {
             <div key={this.props.index} className="card open">
                 <h2 className="name">{this.props.values.name}</h2>
                 <p className="rating"><span>{this.rating}</span> / 10</p>
-                <p className="contact">{this.props.values.contact.formattedPhone}</p>
                 <p className="address">{this.props.values.location.address}</p>
                 {this.isOpen()}
             </div>
