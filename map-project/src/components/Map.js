@@ -163,7 +163,7 @@ export default class Map extends Component {
     handleMenu(){
 
         if(this.state.menuOpen){
-            return <Menu locations={this.state.arrayLocations} handleCenter={(lat, lng) => this.handleCenter(lat, lng)} handleClose={ this.toggleMenu } openCard={ (value) => this.changeCard(value) } />
+            return <Menu handleMarkers={ (incoming) => this.handleMarkers(incoming) } locations={this.state.arrayLocations} handleCenter={(lat, lng) => this.handleCenter(lat, lng)} handleClose={ this.toggleMenu } openCard={ (value) => this.changeCard(value) } />
         }
 
     }

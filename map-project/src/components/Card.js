@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 
 export default class Card extends Component {
 
-    constructor(props){
-        super(props);
-        this.rating = 0;
-    }
-
     isOpen(){
         if(this.props.values.hours){
             if(this.props.values.hours.isOpen){
@@ -17,14 +12,19 @@ export default class Card extends Component {
         }
     }
 
-    render() {
+    renderRating(){
         if(this.props.values.rating){
-            this.rating = this.props.values.rating;
+            return <p className="rating"><span>{this.props.values.rating}</span> / 10</p>
+        } else {
+            return <p>Ainda não avaliado</p>
         }
+    }
+
+    render() {
         return (
             <div key={this.props.index} className="card open">
                 <h2 className="name">{this.props.values.name}</h2>
-                <p className="rating"><span>{this.rating}</span> / 10</p>
+                {this.renderRating()}
                 <p className="address">{this.props.values.location.address}</p>
                 {this.isOpen()}
             </div>

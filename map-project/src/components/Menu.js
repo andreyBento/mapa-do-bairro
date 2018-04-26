@@ -40,6 +40,15 @@ export default class Menu extends Component {
 
             this.setState({ locationsSearch: result });
 
+            let resultLatLng = result.map((res, index) => {
+                let item = { lat: res.venue.location.lat, lng: res.venue.location.lng };
+                return item;
+            });
+
+            this.props.handleMarkers(resultLatLng);
+
+            this.props.handleCenter(resultLatLng[0].lat, resultLatLng[0].lng);
+
         } else{
             return this.setState({ locationsSearch: this.state.locations });
         }
