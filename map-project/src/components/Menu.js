@@ -45,9 +45,11 @@ export default class Menu extends Component {
                 return item;
             });
 
-            this.props.handleMarkers(resultLatLng);
+            if(resultLatLng.length !== 0){
+                this.props.handleMarkers(resultLatLng);
+                this.props.handleCenter(resultLatLng[0].lat, resultLatLng[0].lng);
+            }
 
-            this.props.handleCenter(resultLatLng[0].lat, resultLatLng[0].lng);
 
         } else{
             return this.setState({ locationsSearch: this.state.locations });

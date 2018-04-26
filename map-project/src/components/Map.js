@@ -135,8 +135,6 @@ export default class Map extends Component {
                 var infoJson = JSON.parse(body);
                 that.setState({ places: infoJson.response.groups[0].items });
 
-                that.handleCenter(that.state.places[0].venue.location.lat, that.state.places[0].venue.location.lng);
-
                 var arrayMarker = that.state.places.map(res => {
                     var result = { lat: res.venue.location.lat, lng: res.venue.location.lng }
                     return result;
