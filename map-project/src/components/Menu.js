@@ -53,7 +53,14 @@ export default class Menu extends Component {
 
 
         } else{
-            return this.setState({ locationsSearch: this.state.locations });
+            this.setState({ locationsSearch: this.state.locations });
+
+            let resultLatLng = this.props.locations.map((res, index) => {
+                let item = { lat: res.venue.location.lat, lng: res.venue.location.lng };
+                return item;
+            });
+
+            this.props.handleMarkers(resultLatLng);
         }
 
     }
